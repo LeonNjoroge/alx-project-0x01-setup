@@ -1,5 +1,7 @@
 import React from "react";
 import { UserCardProps } from "@/interfaces";
+
+import { UserProps } from "@/interfaces";
 import Image from "next/image";
 import userImage from "@/public/userImage.png";
 
