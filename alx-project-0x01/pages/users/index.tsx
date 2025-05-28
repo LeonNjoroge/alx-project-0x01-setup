@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
-import {PostData, PostProps, UserData, UserProps} from "@/interfaces";
+import {PostData, PostProps, UserProps} from "@/interfaces";
 import PostCard from "@/components/common/PostCard";
 import UserModal from "@/components/common/UserModal";
 
@@ -9,9 +9,9 @@ import UserModal from "@/components/common/UserModal";
 const Users: React.FC = ({posts}) => {
 
     const [isModalOpen, setModalOpen] = useState(false);
-    const [user, setUser] = useState<UserData | null>(null);
+    const [user, setUser] = useState<UserProps | null>(null);
 
-    const handleAddUser = (newUser: UserData) => {
+    const handleAddUser = (newUser: UserProps) => {
         setUser({...newUser, id: posts.length + 1});
     };
 
