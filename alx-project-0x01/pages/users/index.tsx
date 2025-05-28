@@ -1,10 +1,11 @@
 import React from "react";
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
-import {UserProps} from "@/interfaces";
+import {PostProps, UserProps} from "@/interfaces";
+import PostCard from "@/components/common/PostCard";
 
 
-const Users: React.FC = () => {
+const Users: React.FC = ({posts}) => {
 
     const sampleUser: UserProps = {
         id: 1,
@@ -34,8 +35,13 @@ const Users: React.FC = () => {
         <div>
             <Header />
 
-            <div className="flex justify-center">
-                < UserCard  user={sampleUser} />
+            <div className="flex flex-col justify-center">
+                {
+                    posts?.map(({ id, name, username, email, address, phone, website, company}: UserProps, key: number) => (
+                        <UserCard id={id} name={name} username={username} email={email} address={address} phone={phone} website={website} company={company} />
+                    ))
+                }
+
             </div>
 
 
