@@ -37,7 +37,7 @@ const Users: React.FC = ({posts}) => {
 
             <div className="flex flex-col justify-center">
                 {
-                    posts?.map(({ id, name, username, email, address, phone, website, company}: UserProps, key: number) => (
+                    posts.map(({ id, name, username, email, address, phone, website, company}: UserProps, key: number) => (
                         <UserCard id={id} name={name} username={username} email={email} address={address} phone={phone} website={website} company={company} />
                     ))
                 }
