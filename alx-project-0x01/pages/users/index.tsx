@@ -1,39 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import Header from "@/components/layout/Header";
 import UserCard from "@/components/common/UserCard";
-import {PostProps, UserProps} from "@/interfaces";
+import {PostData, PostProps, UserData, UserProps} from "@/interfaces";
 import PostCard from "@/components/common/PostCard";
+import UserModal from "@/components/common/UserModal";
 
 
 const Users: React.FC = ({posts}) => {
 
-    const sampleUser: UserProps = {
-        id: 1,
-        name: "Jane Doe",
-        username: "janedoe",
-        email: "jane.doe@example.com",
-        address: {
-            street: "456 Maple Street",
-            suite: "Suite 789",
-            city: "Springfield",
-            zipcode: "54321",
-            geo: {
-                lat: "37.7749",
-                lng: "-122.4194",
-            },
-        },
-        phone: "555-123-4567",
-        website: "janedoe.dev",
-        company: {
-            name: "Tech Solutions Inc.",
-            catchPhrase: "Empowering innovation everywhere",
-            bs: "disrupt intuitive platforms",
-        },
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [user, setUser] = useState<UserData | null>(null);
+
+    const handleAddUser = (newUser: UserData) => {
+        setUser({...newUser, id: posts.length + 1});
     };
 
     return (
         <div>
             <Header />
+
+            <div className="flex justify-between p-4">
+                <h1 className=" text-2xl font-semibold">User Content</h1>
+                <button onClick={() => setModalOpen(true)}
+                        className="bg-blue-700 px-4 py-2 rounded-full text-white">Add User</button>
+            </div>
 
             <div className="flex flex-col justify-center">
                 {
@@ -43,7 +33,11 @@ const Users: React.FC = ({posts}) => {
                 }
 
             </div>
-
+            {
+                isModalOpen && (
+                    <UserModal onClose={() => setModalOpen(false)} onSubmit={handleAddUser} />
+                )
+            }
 
         </div>
     )
